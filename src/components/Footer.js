@@ -10,7 +10,7 @@ const Footer = () => {
         rel="noopener noreferrer"
         style={{ color: "white", textDecoration: "none" }}
       >
-        Abdul Jabbar Memon
+        Abdul Memon
       </a>{" "}
       ⭐️{" "}
       <a
