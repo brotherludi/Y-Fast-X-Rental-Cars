@@ -12,7 +12,7 @@ const db = require("./db");
 
 const carsForSale = require("./routes/cars-for-sale");
 console.log("++++++++++++", carsForSale);
-// const sellYourCar = require("./routes/sell-your-car");
+const sellYourCar = require("./routes/sell-your-car");
 // const aboutUs = require("./routes/about-us");
 // const contact = require("./routes/contact");
 // const loginRegister = require("./routes/loginRegister");
@@ -39,7 +39,7 @@ module.exports = function application(ENV) {
 
   // Define routes for each page
   app.use("/cars", carsForSale);
-  // app.use("/sell-your-car", sellYourCar(db));
+  app.use("/sell-your-car", sellYourCar);
   // app.use("/about-us", aboutUs(db));
   // app.use("/contact", contact(db));
   // app.use("/login-register", loginRegister(db));
