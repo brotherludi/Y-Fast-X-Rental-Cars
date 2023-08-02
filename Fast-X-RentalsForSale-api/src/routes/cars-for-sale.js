@@ -20,7 +20,9 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     //const carsForSale = await getCarsForSale();
-    return res.status(200).send({ message: "This is post cars", data:req.body });
+    return res
+      .status(200)
+      .send({ message: "This is post cars", data: req.body });
   } catch (error) {
     console.error("Error fetching cars for sale:", error);
     res.status(500).json({ error: "Internal Server Error" });

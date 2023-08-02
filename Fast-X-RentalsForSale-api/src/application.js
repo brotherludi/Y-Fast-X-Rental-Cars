@@ -22,7 +22,7 @@ function read(file) {
     fs.readFile(
       file,
       {
-        encoding: "utf-8"
+        encoding: "utf-8",
       },
       (error, data) => {
         if (error) return reject(error);
@@ -32,9 +32,7 @@ function read(file) {
   });
 }
 
-module.exports = function application(
-  ENV
-) {
+module.exports = function application(ENV) {
   app.use(cors());
   app.use(helmet());
   app.use(bodyparser.json());
@@ -45,12 +43,11 @@ module.exports = function application(
   // app.use("/about-us", aboutUs(db));
   // app.use("/contact", contact(db));
   // app.use("/login-register", loginRegister(db));
-  
 
   if (ENV === "car_used_rental" || ENV === "test") {
     Promise.all([
       read(path.resolve(__dirname, `db/schema/create.sql`)),
-      read(path.resolve(__dirname, `db/schema/${ENV}.sql`))
+      read(path.resolve(__dirname, `db/schema/${ENV}.sql`)),
     ])
       .then(([create, seed]) => {
         app.get("/debug/reset", (request, response) => {
@@ -62,12 +59,12 @@ module.exports = function application(
             });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(`Error setting up the reset route: ${error}`);
       });
   }
 
-  app.close = function() {
+  app.close = function () {
     return db.end();
   };
 
