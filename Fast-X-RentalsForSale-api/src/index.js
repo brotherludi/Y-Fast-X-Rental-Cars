@@ -1,16 +1,18 @@
-require('dotenv').config() 
+require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const db = require("./db");
 const ENV = require("./environment");
-
+const application = require("./application");
+const carsRoute = require("./routes/cars-for-sale");
 const app = express();
 
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-
+// app.use("/cars", carsRoute);
+app.use(application());
 // Add your routes here
 /* 
 const usersRoutes = require("./routes/users");
