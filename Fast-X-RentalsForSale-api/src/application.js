@@ -11,11 +11,10 @@ const app = express();
 const db = require("./db");
 
 const carsForSale = require("./routes/cars-for-sale");
-console.log("++++++++++++", carsForSale);
 const sellYourCar = require("./routes/sell-your-car");
-// const aboutUs = require("./routes/about-us");
-// const contact = require("./routes/contact");
-// const loginRegister = require("./routes/loginRegister");
+const aboutUs = require("./routes/about-us");
+const contact = require("./routes/contact");
+const loginRegister = require("./routes/loginRegister");
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -40,9 +39,9 @@ module.exports = function application(ENV) {
   // Define routes for each page
   app.use("/cars", carsForSale);
   app.use("/sell-your-car", sellYourCar);
-  // app.use("/about-us", aboutUs(db));
-  // app.use("/contact", contact(db));
-  // app.use("/login-register", loginRegister(db));
+  app.use("/about-us", aboutUs);
+  app.use("/contact", contact);
+  app.use("/login-register", loginRegister);
 
   if (ENV === "car_used_rental" || ENV === "test") {
     Promise.all([
