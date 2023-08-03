@@ -6,8 +6,7 @@ const Introduction = () => {
       <h2>Discover Quality Used Rental Cars</h2>
       <p>
         Low Mileage, Nearly New Models, and Unbeatable Prices! Find your dream
-        car at a fraction of the cost of buying brand new. Welcome to Y Fast X
-        Rental Cars, where incredible deals await.
+        car at a fraction of the cost of buying brand new. Welcome to Fast-X-RentalsForSale, where incredible deals await.
       </p>
     </div>
   );
