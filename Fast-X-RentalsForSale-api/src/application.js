@@ -1,3 +1,4 @@
+/* application.js */
 const fs = require("fs");
 const path = require("path");
 
@@ -15,6 +16,7 @@ const sellYourCar = require("./routes/sell-your-car");
 const aboutUs = require("./routes/about-us");
 const contact = require("./routes/contact");
 const loginRegister = require("./routes/loginRegister");
+const home = require("./routes/home"); // Import the home route
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -42,6 +44,7 @@ module.exports = function application(ENV) {
   app.use("/about-us", aboutUs);
   app.use("/contact", contact);
   app.use("/login-register", loginRegister);
+  app.use("/", home); // Add the home route middleware
 
   if (ENV === "car_used_rental" || ENV === "test") {
     Promise.all([
