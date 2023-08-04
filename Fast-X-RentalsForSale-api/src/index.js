@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-// app.use("/cars", carsRoute);
+app.use("/cars", carsRoute);
 app.use(application());
 // Add your routes here
 /* 
