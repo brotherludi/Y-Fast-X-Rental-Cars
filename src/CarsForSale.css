@@ -1,0 +1,35 @@
+.cars-for-sale-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cars-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 50px; /* Spacing between cars */
+}
+
+.car-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.car-image {
+  
+  margin-right: 10px;
+}
+
+.car-details {
+  font-size: 16px;
+}
+
+.car-details h3 {
+  margin: 0;
+}
+
+.car-details p {
+  margin: 5px 0;
+}
