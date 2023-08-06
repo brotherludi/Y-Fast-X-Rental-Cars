@@ -2,7 +2,7 @@ const router = require("express").Router();
 const db = require("../db");
 
 // Sell Your Car Route - Add a New Car for Sale
-router.post("/sell-your-car", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const {
       company_id,
@@ -22,9 +22,9 @@ router.post("/sell-your-car", async (req, res) => {
     }
 
     // Insert the new car listing into the database
-    await db.query(
+    const {rows} = await db.query(
       `INSERT INTO car_listings (company_id, car_make, car_model, mileage, price, year, color, images, visibility, car_luxury)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
       [
         company_id,
         car_make,
@@ -39,14 +39,51 @@ router.post("/sell-your-car", async (req, res) => {
       ]
     );
 
+    const car = rows[0]
     // Send success response
-    return res.status(200).json({ message: "Car added for sale successfully" });
+    return res.status(200).json({ message: "Car added for sale successfully", car });
   } catch (error) {
     console.error("Error adding car for sale:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
+
+router.put("/:car_id", async (req, res) => {
+  const car_id = req.params.car_id;
+
+  try {
+    const {
+      mileage,
+      price,
+      year,
+    } = req.body;
+
+    // Check if required fields are provided
+    if (!mileage || !price || !year) {
+      return res.status(400).json({ message: "Incomplete Form" });
+    }
+
+    // Insert the new car listing into the database
+    const {rows} = await db.query(
+      `UPDATE car_listings set mileage=$1, price=$2, year=$3
+       WHERE id = $4 RETURNING *`,
+      [ 
+        mileage,
+        price,
+        year,
+        car_id
+      ]
+    );
+
+    const car = rows[0]
+    // Send success response
+    return res.status(200).json({ message: "Updated Successfully", car });
+  } catch (error) {
+    console.error("Error adding car for sale:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 module.exports = router;
 
 //import { addCarForSale } from './db/queries';
