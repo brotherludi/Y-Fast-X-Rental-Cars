@@ -7,3 +7,8 @@ const api = axios.create({
 export const getCarsForSale = () => {
   return api.get('/cars').then((response) => response.data);
 };
+
+
+export const getLoginRegister = () => {
+  return api.get('/login').then((response) => response.data);
+};

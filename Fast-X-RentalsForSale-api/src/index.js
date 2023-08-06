@@ -7,12 +7,17 @@ const ENV = require("./environment");
 const application = require("./application");
 const carsRoute = require("./routes/cars-for-sale");
 const app = express();
+const loginRegister = require("./routes/loginRegister.js");
 
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use("/cars", carsRoute);
 app.use(application());
+app.use("/loginRegister", loginRegister)
+app.use("/login", loginRegister)
+app.use("/register", loginRegister)
+
 // Add your routes here
 /* 
 const usersRoutes = require("./routes/users");

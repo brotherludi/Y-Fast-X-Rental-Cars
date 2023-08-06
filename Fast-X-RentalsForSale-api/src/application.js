@@ -16,6 +16,7 @@ const aboutUs = require("./routes/about-us");
 const contact = require("./routes/contact");
 const loginRegister = require("./routes/loginRegister");
 
+
 function read(file) {
   return new Promise((resolve, reject) => {
     fs.readFile(
@@ -41,7 +42,7 @@ module.exports = function application(ENV) {
   app.use("/sell-your-car", sellYourCar);
   app.use("/about-us", aboutUs);
   app.use("/contact", contact);
-  app.use("/login-register", loginRegister);
+  app.use("/loginRegister", loginRegister);
 
   if (ENV === "car_used_rental" || ENV === "test") {
     Promise.all([
