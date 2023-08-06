@@ -1,3 +1,5 @@
+//index.js
+
 require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
@@ -13,10 +15,13 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use("/cars", carsRoute);
-app.use(application());
-app.use("/loginRegister", loginRegister)
-app.use("/login", loginRegister)
-app.use("/register", loginRegister)
+app.use(application(ENV));
+// app.use("/loginRegister", loginRegister)
+// app.use("/login", loginRegister)
+// app.use("/register", loginRegister)
+//^changed to the following single line
+
+app.use('/', loginRegister);
 
 // Add your routes here
 /* 
@@ -33,3 +38,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port} in ${ENV} mode.`);
 });
+

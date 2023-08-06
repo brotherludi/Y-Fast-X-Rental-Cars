@@ -1,4 +1,4 @@
-
+//loginRegister.js 
 const express = require('express');
 const bcrypt = require('bcrypt');
 const pool = require('../db');
@@ -6,10 +6,32 @@ const pool = require('../db');
 const router = express.Router();
 
 // Registration routes
+
+
+
+// router.get('/register', (req, res) => {
+//   res.send('GET /register');
+// });
+
+
+//^changed this to the following code 
+
 router.get('/register', (req, res) => {
-  // This route would usually show a registration form in a real-world application
-  res.send('GET /register');
+  const { username, password } = req.query;
+  // Now you have the username and password
+  console.log(`Username: ${username}, Password: ${password}`);
+  
+  // Make sure you do not send password back in the response.
+  // This is just for demonstration.
+  res.send(`Username: ${username}, Password: ${password}`);
 });
+
+
+//USED THE FOLLOWING LINK
+//http://localhost:3000/register?username=test&password=test
+
+
+
 
 router.post('/register', async (req, res) => {
   try {
@@ -29,10 +51,33 @@ router.post('/register', async (req, res) => {
 });
 
 // Login routes
-router.get('/login', (req, res) => {
-  // This route would usually show a login form in a real-world application
-  res.send('GET /login');
+// router.get('/login', (req, res) => {
+//   res.send('GET /login');
+// });
+//^improved that with follwing code
+
+router.get('/login', async (req, res) => {
+  const { username, password } = req.query;
+
+  // In a real-world application, you would typically hash the password and compare it against
+  // the hashed password in your database. In this case, you're simply checking if the username
+  // and password match the string "test".
+
+  if (username === 'test' && password === 'test') {
+    res.status(200).json({ message: 'Login successful' });
+  } else {
+    res.status(401).json({ message: 'Invalid username or password' });
+  }
 });
+
+
+
+//USED THE FOLLOWING LINK
+//http://localhost:3000/login?username=test&password=test
+
+
+
+
 
 router.post('/login', async (req, res) => {
   try {
@@ -58,6 +103,72 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
+
+
+// const express = require('express');
+// const bcrypt = require('bcrypt');
+// const pool = require('../db');
+
+// const router = express.Router();
+
+// // Registration routes
+// router.get('/register', (req, res) => {
+//   // This route would usually show a registration form in a real-world application
+//   res.send('GET /register');
+// });
+
+// router.post('/register', async (req, res) => {
+//   try {
+//     const { username, email, password } = req.body;
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     const newUser = await pool.query(
+//       'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, username, email',
+//       [username, email, hashedPassword]
+//     );
+
+//     res.status(201).json(newUser.rows[0]);
+//   } catch (error) {
+//     console.error('Error registering user:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+// // Login routes
+// router.get('/login', (req, res) => {
+//   // This route would usually show a login form in a real-world application
+//   res.send('GET /login');
+// });
+
+// router.post('/login', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+
+//     if (!user.rows.length) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     const isValidPassword = await bcrypt.compare(password, user.rows[0].password);
+
+//     if (!isValidPassword) {
+//       return res.status(401).json({ error: 'Invalid credentials' });
+//     }
+
+//     res.status(200).json({ message: 'Login successful' });
+//   } catch (error) {
+//     console.error('Error logging in:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+// module.exports = router;
 
 
 

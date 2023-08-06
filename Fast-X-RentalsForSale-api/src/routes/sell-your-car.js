@@ -1,5 +1,7 @@
 const router = require("express").Router();
+const db = require("../db/");
 //import { addCarForSale } from './db/queries';
+
 
 // Sell Your Car Route - Add a New Car for Sale
 // router.post('/sell-your-car', async (req, res) => {
@@ -25,7 +27,20 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    return res
+    const {company_id, car_make, car_model, mileage, price, year, color, images, car_luxury} = req.body;
+    if (!car_make || !car_model || !price || !color || !year ) {
+      return res.status(400).send({message: "Incomplete Form"});
+    } 
+
+    await db.query(`INSERT INTO car_listings (company_id, car_make, car_model, mileage, price, year, color, images, visibility, car_luxury)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,  
+     [company_id, car_make, car_model, mileage, price, year, color, images, true, car_luxury ])
+    
+    //need to make a new car listing - look back at mid term
+    //make the form and use the same name as variable 
+
+
+      return res
       .status(200)
       .send({ message: "This is post sell your cars🚗", data: req.body });
   } catch (error) {
