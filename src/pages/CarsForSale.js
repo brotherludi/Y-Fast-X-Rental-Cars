@@ -11,6 +11,7 @@ const CarsForSale = () => {
     // Fetch the list of cars from the server using the getCarsForSale function
     getCarsForSale()
       .then((cars) => {
+        console.log("+++++", cars)
         setCarsForSale(cars);
       })
       .catch((error) => {
@@ -26,7 +27,9 @@ const CarsForSale = () => {
         <ul className="cars-list">
           {carsForSale.map((car) => (
             <li key={car.id} className="car-item">
-            <img src={`http://localhost:3001/images/${car.images[0]}`} alt={`${car.car_make} ${car.car_model}`} className="car-image" style={{ maxWidth: '290px' }}/>
+              {car.images && (
+                <img src={`http://localhost:3001/images/${car.images[0]}`} alt={`${car.car_make} ${car.car_model}`} className="car-image" style={{ maxWidth: '290px' }}/>
+              )}
             <div className="car-details">
               <h3>{car.car_make} {car.car_model}</h3>
               <p>Year: {car.year}</p>
