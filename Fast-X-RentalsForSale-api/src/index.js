@@ -21,7 +21,7 @@ app.use(application(ENV));
 // app.use("/register", loginRegister)
 //^changed to the following single line
 
-app.use('/', loginRegister);
+app.use('/login-register', loginRegister);
 
 // Add your routes here
 /* 

@@ -35,12 +35,12 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { first_name, email, password, last_name, username } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await pool.query(
-      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, username, email',
-      [username, email, hashedPassword]
+      'INSERT INTO users (first_name, email, password, last_name, username) VALUES ($1, $2, $3, $4, $5) RETURNING id, username, email',
+      [first_name, email, hashedPassword, last_name, username]
     );
 
     res.status(201).json(newUser.rows[0]);
