@@ -35,7 +35,9 @@ const LoginRegister = () => {
   const [first_name, setFirstname] = useState("");
   const [last_name, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [userType, setUserType] = useState(""); // Define userType state
+  const [companyName, setCompanyName] = useState("");
+  const [location, setLocation] = useState("");
+  const [userType, setUserType] = useState("buyer");
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -73,13 +75,23 @@ const LoginRegister = () => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
         <button type="submit">Login</button>
       </form>
-        <h2>Register</h2>
+      <h2>Register</h2>
         <form onSubmit={handleRegister}>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-          <input type="text" value={first_name} onChange={(e) => setFirstname(e.target.value)} placeholder="First name" />
-          <input type="text" value={last_name} onChange={(e) => setLastname(e.target.value)} placeholder="Last name" />
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+          {/* Common fields */}
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+          {userType === "buyer" && (
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+          )}
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Location" />
+
+          {/* Fields for seller */}
+          {userType === "seller" && (
+            <>
+              <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Company Name" />
+            </>
+          )}
+
           <label htmlFor="userType">Select User Type:</label>
           <select id="userType" value={userType} onChange={(e) => setUserType(e.target.value)}>
             <option value="buyer">Buyer</option>
