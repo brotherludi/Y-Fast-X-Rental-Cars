@@ -1,0 +1,52 @@
+.sell-car-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.sell-car-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sell-car-form label {
+  font-size: 16px;
+}
+
+.sell-car-form input[type='text'],
+.sell-car-form input[type='number'] {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.sell-car-form input[type='file'] {
+  width: 100%;
+}
+
+.sell-car-form button[type='submit'] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sell-car-form button[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+.sell-car-form label:last-child {
+  margin-bottom: 20px;
+}
+
+/* Additional space below the form */
+.sell-car-content {
+  margin-bottom: 40px;
+}

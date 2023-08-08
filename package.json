@@ -1,4 +1,6 @@
+
 {
+  "proxy": "http://localhost:3000",
   "name": "y-fast-x-rental-cars",
   "version": "0.1.0",
   "private": true,
@@ -26,6 +28,8 @@
       "react-app/jest"
     ]
   },
+
+
   "browserslist": {
     "production": [
       ">0.2%",
@@ -37,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
