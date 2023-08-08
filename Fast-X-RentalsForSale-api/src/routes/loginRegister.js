@@ -34,6 +34,9 @@ router.get('/register', (req, res) => {
 
 
 router.post('/register', async (req, res) => {
+
+console.log(req.body)
+
   try {
     const { first_name, email, password, last_name, username } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -80,6 +83,9 @@ router.get('/login', async (req, res) => {
 
 
 router.post('/login', async (req, res) => {
+
+console.log (req.body)
+
   try {
     const { email, password } = req.body;
 

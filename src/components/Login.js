@@ -218,7 +218,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-const serverURL = "http://localhost:3001";
+const serverURL = "http://localhost:3000";
 
 // Function to register a new user
 export function registerUser(userData) {

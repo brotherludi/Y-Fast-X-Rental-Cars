@@ -13,9 +13,6 @@ export function registerUser(userData) {
       console.log(response.data);
       return response.data;
     })
-    .catch((error) => {
-      console.error(error);
-    });
 }
 
 // Function to login a user
@@ -26,9 +23,6 @@ export function loginUser(userData) {
       console.log(response.data);
       return response.data;
     })
-    .catch((error) => {
-      console.error(error);
-    });
 }
 
 const LoginRegister = () => {
@@ -43,9 +37,10 @@ const LoginRegister = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    loginUser({ email, password })
+    loginUser({ email, password, userType })
       .then((data) => {
-        console.log(data);
+        console.log("data", data);
+        localStorage.setItem("user", JSON.stringify(data))
         // handle success - for example, change the app state to show that the user is logged in
       })
       .catch((err) => {
@@ -56,7 +51,7 @@ const LoginRegister = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    registerUser({ username, password, first_name, last_name, email })
+    registerUser({ username, password, userType, email, first_name: "sponge", last_name: "bob" })
       .then((data) => {
         console.log(data);
         // handle success - for example, change the app state to show that the user is registered
