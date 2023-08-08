@@ -1,7 +1,3 @@
-
-
-//login.js page
-
 import axios from 'axios';
 import { getLoginRegister } from '../api'; 
 import React, { useEffect, useState } from 'react';

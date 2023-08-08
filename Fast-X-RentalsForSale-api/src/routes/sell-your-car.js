@@ -3,6 +3,7 @@ const db = require("../db");
 
 // Sell Your Car Route - Add a New Car for Sale
 router.post("/", async (req, res) => {
+  console.log("backend received request")
   try {
     const {
       company_id,
@@ -26,19 +27,19 @@ router.post("/", async (req, res) => {
       `INSERT INTO car_listings (company_id, car_make, car_model, mileage, price, year, color, images, visibility, car_luxury)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
       [
-        company_id,
+        parseInt(company_id),
         car_make,
         car_model,
-        mileage,
-        price,
-        year,
+        parseInt(mileage),
+        parseInt(price),
+        parseInt(year),
         color,
         images,
         true,
         car_luxury,
       ]
     );
-
+    // ( 1, 'Toyota', 'Corolla', 20000, 15000.00, 2018, 'Blue', ARRAY['image1.jpg', 'image2.jpg'], true, false),
     const car = rows[0]
     // Send success response
     return res.status(200).json({ message: "Car added for sale successfully", car });

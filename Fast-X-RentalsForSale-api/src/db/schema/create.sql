@@ -19,23 +19,6 @@ CREATE TABLE users (
   profile_photo TEXT
 );
 
--- Create the car_listings table
-CREATE TABLE car_listings (
-  id SERIAL PRIMARY KEY,
-  company_id INT NOT NULL,
-  car_make VARCHAR(50) NOT NULL,
-  car_model VARCHAR(50) NOT NULL,
-  mileage INT,
-  price DECIMAL(10, 2) NOT NULL,
-  year INT NOT NULL,
-  color VARCHAR(50),
-  images TEXT[],
-  visibility BOOLEAN DEFAULT true,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP,
-  car_luxury BOOLEAN
-);
-
 -- Create the companies table
 CREATE TABLE companies (
   id SERIAL PRIMARY KEY,
@@ -46,6 +29,23 @@ CREATE TABLE companies (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+-- Create the car_listings table
+CREATE TABLE car_listings (
+  id SERIAL PRIMARY KEY,
+  company_id INTEGER REFERENCES companies(id),
+  car_make VARCHAR(50) NOT NULL,
+  car_model VARCHAR(50) NOT NULL,
+  mileage INTEGER NOT NULL,
+  price INTEGER NOT NULL,
+  year INTEGER NOT NULL,
+  color VARCHAR(50),
+  images TEXT[],
+  visibility BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP,
+  car_luxury BOOLEAN
 );
 
 -- Create the reviews table

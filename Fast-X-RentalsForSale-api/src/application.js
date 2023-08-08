@@ -41,7 +41,7 @@ module.exports = function application(ENV) {
 
   // Define routes for each page
   app.use("/cars", carsForSale);
-  app.use("/sell", sellYourCar);
+  app.use("/sell-your-car", sellYourCar);
   app.use("/about-us", aboutUs);
   app.use("/contact", contact);
   app.use("/loginRegister", loginRegister);
