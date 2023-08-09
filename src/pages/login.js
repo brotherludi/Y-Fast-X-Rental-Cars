@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../LoginRegister.css";
+import { useNavigate } from "react-router-dom";
 
 // Function to register a new user
 export function registerUser(userData) {
@@ -34,13 +35,18 @@ const LoginRegister = () => {
   const [companyName, setCompanyName] = useState("");
   const [location, setLocation] = useState("");
   const [userType, setUserType] = useState("buyer");
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
+
+    console.log("hello")
+
     event.preventDefault();
     loginUser({ email, password, userType })
       .then((data) => {
         console.log("data", data);
         localStorage.setItem("user", JSON.stringify(data))
+        navigate("/")
         // handle success - for example, change the app state to show that the user is logged in
       })
       .catch((err) => {
@@ -83,7 +89,7 @@ const LoginRegister = () => {
           />
 
           {/* Select User Type */}
-          <label htmlFor="loginUserType">Select User Type:</label>
+          {/* <label htmlFor="loginUserType">Select User Type:</label>
           <select
             id="loginUserType"
             value={userType}
@@ -91,7 +97,7 @@ const LoginRegister = () => {
           >
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
-          </select>
+          </select> */}
 
           <button type="submit">Login</button>
         </form>
@@ -104,14 +110,14 @@ const LoginRegister = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
           />
-          {userType === "buyer" && (
+          {/* {userType === "buyer" && (
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Username"
             />
-          )}
+          )} */}
           <input
             type="password"
             value={password}
@@ -126,7 +132,7 @@ const LoginRegister = () => {
           />
 
           {/* Fields for seller */}
-          {userType === "seller" && (
+          {/* {userType === "seller" && (
             <>
               <input
                 type="text"
@@ -135,7 +141,7 @@ const LoginRegister = () => {
                 placeholder="Company Name"
               />
             </>
-          )}
+          )} */}
 
           <label htmlFor="userType">Select User Type:</label>
           <select
