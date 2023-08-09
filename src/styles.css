@@ -69,6 +69,11 @@ header a {
   border-radius: 5px;
 }
 
+/* Logout button styles */
+.nav-links.logout {
+  background-color: #f44336;
+}
+
 /* Introduction styles */
 .introduction {
   padding: 20px;

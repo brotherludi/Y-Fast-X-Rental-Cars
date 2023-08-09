@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getCarsForSale } from '../api'; 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import '../CarsForSale.css';
+import React, { useEffect, useState } from "react";
+import { getCarsForSale } from "../api";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import "../CarsForSale.css";
 
 const CarsForSale = () => {
   const [carsForSale, setCarsForSale] = useState([]);
@@ -11,11 +11,10 @@ const CarsForSale = () => {
     // Fetch the list of cars from the server using the getCarsForSale function
     getCarsForSale()
       .then((cars) => {
-        console.log("+++++", cars)
         setCarsForSale(cars);
       })
       .catch((error) => {
-        console.error('Error fetching cars for sale:', error);
+        console.error("Error fetching cars for sale:", error);
       });
   }, []);
 
@@ -28,22 +27,29 @@ const CarsForSale = () => {
           {carsForSale.map((car) => (
             <li key={car.id} className="car-item">
               {car.images && (
-                <img src={`http://localhost:3001/images/${car.images[0]}`} alt={`${car.car_make} ${car.car_model}`} className="car-image" style={{ maxWidth: '290px' }}/>
+                <img
+                  src={`${car.images[0]}`}
+                  alt={`${car.car_make} ${car.car_model}`}
+                  className="car-image"
+                  style={{ maxWidth: "290px" }}
+                />
               )}
-            <div className="car-details">
-              <h3>{car.car_make} {car.car_model}</h3>
-              <p>Year: {car.year}</p>
-              <p>Mileage: {car.mileage}</p>
-              <p>Color: {car.color}</p>
-              <p>Price: ${car.price}</p> 
-            </div>
-          </li>
-        ))}
-      </ul>
+              <div className="car-details">
+                <h3>
+                  {car.car_make} {car.car_model}
+                </h3>
+                <p>Year: {car.year}</p>
+                <p>Mileage: {car.mileage}</p>
+                <p>Color: {car.color}</p>
+                <p>Price: ${car.price}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
-);
+  );
 };
 
 export default CarsForSale;
