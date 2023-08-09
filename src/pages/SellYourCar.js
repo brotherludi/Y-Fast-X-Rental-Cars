@@ -6,7 +6,7 @@ import '../SellYourCar.css';
 
 const SellYourCar = () => {
   const [formData, setFormData] = useState({
-    company_id: '', // set the appropriate company_id here
+    
     car_make: '',
     car_model: '',
     mileage: '',
@@ -19,7 +19,19 @@ const SellYourCar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('car_make', formData.car_make);
+    formData.append('car_model', formData.car_model);
+    formData.append('mileage', formData.mileage);
+    formData.append('price', formData.price);
+    formData.append('year', formData.year);
+    formData.append('color', formData.color);
+    formData.append('car_luxury', formData.car_luxury);
+    formData.append('images', e.target.images.files[0]);
+  
     try {
+      console.log('Form Data:', formData);
       await postSellCar(formData);
       // You can redirect to the Cars for Sale page or show a success message here
     } catch (error) {
@@ -27,12 +39,20 @@ const SellYourCar = () => {
       // Handle error (e.g., show an error message to the user)
     }
   };
+  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
+    
+    console.log('Name:', name);
+    console.log('Value:', value);
+    console.log('Type:', type);
+    console.log('Checked:', checked);
+  
     setFormData((prevData) => ({ ...prevData, [name]: newValue }));
   };
+  
 
   return (
     <div>

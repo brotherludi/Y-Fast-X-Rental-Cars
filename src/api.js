@@ -19,7 +19,6 @@ export const postSellCar = async (carData) => {
   }
 };
 
-
 export const getLoginRegister = () => {
   return api.get('/login').then((response) => response.data);
 };
