@@ -35,15 +35,22 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
 
-console.log(req.body)
-
   try {
-    const { first_name, email, password, last_name, username } = req.body;
+    const { first_name, email, password, last_name, username, userType } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
+
+    let newUserString = 'INSERT INTO users (first_name, email, password, last_name, username, user_type) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, username, email';
+    let newUserParams =  [first_name, email, hashedPassword, last_name, username, userType]
+
+    // if (userType==="seller"){
+    //   newUserString = 'INSERT INTO companies (user_id, company_name, rating, location) VALUES ($1, $2, $3, $4, $5) RETURNING id, username, email';
+    //   newUserParams =  [first_name, email, hashedPassword, last_name, username]
+    // }
+
     const newUser = await pool.query(
-      'INSERT INTO users (first_name, email, password, last_name, username) VALUES ($1, $2, $3, $4, $5) RETURNING id, username, email',
-      [first_name, email, hashedPassword, last_name, username]
+      newUserString, 
+      newUserParams
     );
 
     res.status(201).json(newUser.rows[0]);
@@ -101,7 +108,9 @@ console.log (req.body)
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    res.status(200).json({ message: 'Login successful' });
+    // res.status(200).json({ message: 'Login successful' });
+    delete user.rows[0].password;
+    res.status(200).json(user.rows[0])
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ error: 'Internal Server Error' });
