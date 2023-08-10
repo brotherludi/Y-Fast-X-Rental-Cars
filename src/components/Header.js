@@ -51,6 +51,7 @@ const Header = () => {
 
           {user && user.user_type === "seller" && (
             <ul className="nav-menu">
+              <ul className="small-nav">
               <li className="nav-item">
                 <Link to="/" className="nav-links">
                   Home
@@ -76,6 +77,7 @@ const Header = () => {
                   Contact
                 </Link>
               </li>
+              </ul>
               <li className="nav-item">
                 <button className="nav-links logout" onClick={handlelogout}>
                   Logout
