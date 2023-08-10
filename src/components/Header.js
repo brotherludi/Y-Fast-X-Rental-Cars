@@ -18,29 +18,31 @@ const Header = () => {
 
           {user && user.user_type === "buyer" && (
             <ul className="nav-menu">
-              <li className="nav-item">
-                <Link to="/" className="nav-links">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/cars" className="nav-links">
-                  Cars for Sale
-                </Link>
-              </li>
-              {/* <li className="nav-item">
+              <ul className="small-nav">
+                <li className="nav-item">
+                  <Link to="/" className="nav-links">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/cars" className="nav-links">
+                    Cars for Sale
+                  </Link>
+                </li>
+                {/* <li className="nav-item">
               <Link to="/sell" className="nav-links">Sell Your Car</Link>
             </li> */}
-              <li className="nav-item">
-                <Link to="/about" className="nav-links">
-                  About Us
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/contact" className="nav-links">
-                  Contact
-                </Link>
-              </li>
+                <li className="nav-item">
+                  <Link to="/about" className="nav-links">
+                    About Us
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/contact" className="nav-links">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
               <li className="nav-item">
                 <button className="nav-links logout" onClick={handlelogout}>
                   Logout
@@ -52,31 +54,31 @@ const Header = () => {
           {user && user.user_type === "seller" && (
             <ul className="nav-menu">
               <ul className="small-nav">
-              <li className="nav-item">
-                <Link to="/" className="nav-links">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/cars" className="nav-links">
-                  Cars for Sale
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/sell" className="nav-links">
-                  Sell Your Car
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/about" className="nav-links">
-                  About Us
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/contact" className="nav-links">
-                  Contact
-                </Link>
-              </li>
+                <li className="nav-item">
+                  <Link to="/" className="nav-links">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/cars" className="nav-links">
+                    Cars for Sale
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/sell" className="nav-links">
+                    Sell Your Car
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/about" className="nav-links">
+                    About Us
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/contact" className="nav-links">
+                    Contact
+                  </Link>
+                </li>
               </ul>
               <li className="nav-item">
                 <button className="nav-links logout" onClick={handlelogout}>

@@ -34,7 +34,7 @@ header a {
   padding: 10px 0;
   position: relative;
   width: 100%;
-  
+
 }
 
 .navbar-container {
@@ -73,14 +73,12 @@ header a {
 }
 
 .nav-item {
-  
+
   margin-right: 20px;
 }
 
-
-
 .nav-links {
-  
+
   color: #fff;
   text-decoration: none;
   padding: 10px;
@@ -89,7 +87,7 @@ header a {
 
 /* Logout button styles */
 .nav-links.logout {
-  background-color: #f44336;
+  background-color: tomato;
 }
 
 /* Introduction styles */
