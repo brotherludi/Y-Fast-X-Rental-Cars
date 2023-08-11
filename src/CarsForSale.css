@@ -5,8 +5,10 @@
 
 .cars-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
-  gap: 50px; /* Spacing between cars */
+  grid-template-columns: repeat(2, 1fr);
+  /* Two columns */
+  gap: 50px;
+  /* Spacing between cars */
 }
 
 .car-item {
@@ -18,7 +20,7 @@
 }
 
 .car-image {
-  
+
   margin-right: 10px;
 }
 
@@ -32,4 +34,61 @@
 
 .car-details p {
   margin: 5px 0;
+}
+
+/* Filters container */
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Filter section */
+.filter {
+  display: flex;
+  align-items: center;
+}
+
+/* Advanced Search button */
+.advanced-filters-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Advanced filters section */
+.advanced-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* Price, Mileage, and Year filters */
+.filter input {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+/* Search input */
+.search-container {
+  margin-top: 20px;
+}
+
+.search-container input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+body {
+  color: #333;
 }

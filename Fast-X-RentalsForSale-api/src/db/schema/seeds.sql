@@ -21,7 +21,7 @@ VALUES
   (2, 'Honda', 'Civic', 36541, 18000.00, 2019, 'Black', ARRAY['https://uploads.builtforbackroads.com/uploads/2022/02/2022.02.07-HONDA-CIVIC-2019_1.jpg'], true, false),
   (3, 'Mercedes-Benz', 'S580e', 12377, 129999.00, 2023, 'Black', ARRAY['https://media.zenfs.com/en/autoblog_50/20f94babdf223fe560dfabf96c044ec0'], true, true),
   (4, 'Chevrolet', 'Camaro', 18657, 49999.00, 2022, 'Yellow', ARRAY['https://www.motortrend.com/uploads/2021/09/001-chevy-camaro-driver-front-three-quarter.jpg'], true, false),
-  (2, 'Toyota', 'Camry', 15324, 16000.00, 2021, 'Red', ARRAY['https://www.autotrader.com/wp-content/uploads/2022/02/2021-toyota-camry-trd.jpg?w=1024'], true, true);
+  (2, 'Toyota', 'Camry', 15324, 16000.00, 2021, 'Red', ARRAY['https://www.autotrader.com/wp-content/uploads/2022/02/2021-toyota-camry-trd.jpg?w=1024'], true, false);
 
 -- Seed data for favorites
 INSERT INTO favorites (user_id, car_id, created_at, updated_at)
