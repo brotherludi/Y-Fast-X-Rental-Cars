@@ -16,6 +16,10 @@ const SellYourCar = () => {
     car_luxury: false,
   });
 
+  const [showModal, setShowModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData1 = new FormData();
@@ -27,27 +31,27 @@ const SellYourCar = () => {
     formData1.append("color", formData.color);
     formData1.append("car_luxury", formData.car_luxury);
     formData1.append("images", e.target.images.files[0]);
-    
+
     try {
-      console.log("Form Data1:", formData1);
       await postSellCar(formData);
-      // You can redirect to the Cars for Sale page or show a success message here
+      setShowModal(true);
+      setErrorMessage("");
     } catch (error) {
       console.error("Error posting car for sale:", error);
-      // Handle error (e.g., show an error message to the user)
+      setErrorMessage("Failed to add car for sale");
     }
   };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === "checkbox" ? checked : value;
-
-    console.log("Name:", name);
-    console.log("Value:", value);
-    console.log("Type:", type);
-    console.log("Checked:", checked);
-
     setFormData((prevData) => ({ ...prevData, [name]: newValue }));
+  };
+
+  const handleOkButtonClick = () => {
+    setShowModal(false);
+    // Redirect to Cars For Sale page
+    window.location.href = "/cars";
   };
 
   return (
@@ -126,6 +130,18 @@ const SellYourCar = () => {
           <button type="submit">Submit</button>
         </form>
       </div>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p className="success-message">
+              Car added for sale successfully! 😃
+            </p>
+            <button className="modal-button" onClick={handleOkButtonClick}>
+              OK
+            </button>
+          </div>
+        </div>
+      )}
       <Footer />
     </div>
   );
