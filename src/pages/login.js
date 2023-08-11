@@ -8,22 +8,18 @@ import { useNavigate } from "react-router-dom";
 
 // Function to register a new user
 export function registerUser(userData) {
-  return axios
-    .post(`/login-register/register`, userData)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    })
+  return axios.post(`/login-register/register`, userData).then((response) => {
+    console.log(response.data);
+    return response.data;
+  });
 }
 
 // Function to login a user
 export function loginUser(userData) {
-  return axios
-    .post(`/login-register/login`, userData)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    })
+  return axios.post(`/login-register/login`, userData).then((response) => {
+    console.log(response.data);
+    return response.data;
+  });
 }
 
 const LoginRegister = () => {
@@ -35,18 +31,21 @@ const LoginRegister = () => {
   const [companyName, setCompanyName] = useState("");
   const [location, setLocation] = useState("");
   const [userType, setUserType] = useState("buyer");
+  const [showRegisterSuccessModal, setShowRegisterSuccessModal] =
+    useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const handleLogin = (event) => {
-
-    console.log("hello")
-
     event.preventDefault();
     loginUser({ email, password, userType })
       .then((data) => {
         console.log("data", data);
-        localStorage.setItem("user", JSON.stringify(data))
-        navigate("/")
+        localStorage.setItem("user", JSON.stringify(data));
+        setUserLoggedIn(true);
+        navigate("/");
         // handle success - for example, change the app state to show that the user is logged in
       })
       .catch((err) => {
@@ -57,16 +56,38 @@ const LoginRegister = () => {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    registerUser({ username, password, userType, email, first_name: "sponge", last_name: "bob" })
+    registerUser({
+      username,
+      password,
+      userType,
+      email,
+      first_name: "sponge",
+      last_name: "bob",
+    })
       .then((data) => {
-        console.log(data);
-        // handle success - for example, change the app state to show that the user is registered
+        setShowRegisterSuccessModal(true);
+        setRegistrationSuccess(true);
+        // handle success - to show that the user is registered
       })
       .catch((err) => {
         console.error(err);
         // handle error - for example, show an error message
       });
   };
+
+  useEffect(() => {
+    if (showRegisterSuccessModal && userLoggedIn && registrationSuccess) {
+      loginUser({ email, password, userType })
+        .then((loginData) => {
+          console.log("Logged in:", loginData);
+          localStorage.setItem("user", JSON.stringify(loginData));
+          navigate("/");
+        })
+        .catch((err) => {
+          console.error("Login error:", err);
+        });
+    }
+  }, [showRegisterSuccessModal, userLoggedIn, registrationSuccess, navigate]);
 
   return (
     <div>
@@ -155,167 +176,27 @@ const LoginRegister = () => {
           <button type="submit">Register</button>
         </form>
       </div>
+      {/* Register success modal */}
+      {showRegisterSuccessModal && !userLoggedIn && (
+        <div className="modal">
+          <div className="modal-content">
+            <p className="success-message">
+              Registered successfully! Please Login 😃
+            </p>
+            <button
+              className="modal-button"
+              onClick={() => {
+                setShowRegisterSuccessModal(false);
+              }}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
       <Footer />
     </div>
   );
 };
 
 export default LoginRegister;
-
-// const serverURL = "http://localhost:3001";
-
-// // Function to register a new user
-// export function registerUser(userData) {
-//   return axios.post(`${serverURL}/login-register/register`, userData)
-//     .then(response => {
-//       console.log(response.data);
-//       return response.data;
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-// }
-
-// // Function to login a user
-// export function loginUser(userData) {
-//   return axios.post(`${serverURL}/login-register/login`, userData)
-//     .then(response => {
-//       console.log(response.data);
-//       return response.data;
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-// }
-
-// const LoginRegister = () => {
-//   const [username, setUsername] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const handleLogin = (event) => {
-//     event.preventDefault();
-//     loginUser({username, password});
-//   };
-
-//   const handleRegister = (event) => {
-//     event.preventDefault();
-//     registerUser({username, password});
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <form onSubmit={handleLogin}>
-//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-//         <button type="submit">Login</button>
-//       </form>
-
-//       <h2>Register</h2>
-//       <form onSubmit={handleRegister}>
-//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-//         <button type="submit">Register</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// const handleLogin = (event) => {
-//   event.preventDefault();
-//   loginUser({username, password})
-//     .then(data => {
-//       console.log(data);
-//       // handle success - for example, change the app state to show that the user is logged in
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       // handle error - for example, show an error message
-//     });
-// };
-
-// export default LoginRegister;
-
-// // login.js
-// import axios from 'axios';
-// import React, { useState } from 'react';
-
-// import axios from 'axios';
-// import React, { useState } from 'react';
-
-// const serverURL = "http://localhost:3001";
-
-// // Function to register a new user
-// export function registerUser(userData) {
-//   return axios.post(`${serverURL}/login-register/register`, userData)
-//     .then(response => {
-//       console.log(response.data);
-//       return response.data;
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-// }
-
-// // Function to login a user
-// export function loginUser(userData) {
-//   return axios.post(`${serverURL}/login-register/login`, userData)
-//     .then(response => {
-//       console.log(response.data);
-//       return response.data;
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-// }
-
-// const LoginRegister = () => {
-//   const [username, setUsername] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const handleLogin = (event) => {
-//     event.preventDefault();
-//     loginUser({username, password})
-//       .then(data => {
-//         console.log(data);
-//         // handle success - for example, change the app state to show that the user is logged in
-//       })
-//       .catch(err => {
-//         console.error(err);
-//         // handle error - for example, show an error message
-//       });
-//   };
-
-//   const handleRegister = (event) => {
-//     event.preventDefault();
-//     registerUser({username, password})
-//       .then(data => {
-//         console.log(data);
-//         // handle success - for example, change the app state to show that the user is registered
-//       })
-//       .catch(err => {
-//         console.error(err);
-//         // handle error - for example, show an error message
-//       });
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <form onSubmit={handleLogin}>
-//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-//         <button type="submit">Login</button>
-//       </form>
-
-//       <h2>Register</h2>
-//       <form onSubmit={handleRegister}>
-//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-//         <button type="submit">Register</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default LoginRegister;
