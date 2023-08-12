@@ -225,7 +225,7 @@ const CarsForSale = () => {
                   src={`${car.images[0]}`}
                   alt={`${car.car_make} ${car.car_model}`}
                   className="car-image"
-                  style={{ maxWidth: "290px" }}
+                  style={{ maxWidth: "300px" }}
                 />
               )}
               <div className="car-details">
@@ -233,9 +233,9 @@ const CarsForSale = () => {
                   {car.car_make} {car.car_model}
                 </h3>
                 <p>Year: {car.year}</p>
-                <p>Mileage: {car.mileage}</p>
+                <p>Mileage: {car.mileage.toLocaleString()}</p>
                 <p>Color: {car.color}</p>
-                <p>Price: ${car.price}</p>
+                <p>Price: ${car.price.toLocaleString()}</p>
               </div>
             </li>
           ))}

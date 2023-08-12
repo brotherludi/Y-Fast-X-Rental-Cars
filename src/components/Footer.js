@@ -37,7 +37,7 @@ const Footer = () => {
         rel="noopener noreferrer"
         style={{ color: "white", textDecoration: "none" }}
       >
-        Seaf
+        Seaf Roshi
       </a>
     </footer>
   );
