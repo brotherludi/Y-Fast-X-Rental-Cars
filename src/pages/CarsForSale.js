@@ -4,6 +4,19 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../CarsForSale.css";
 
+const ContactPopup = ({ company }) => {
+  return (
+    <div className="contact-popup">
+      <h3>Contact Information</h3>
+      <p>Company Name: {company.company_name}</p>
+      <p>Location: {company.location}</p>
+      <p>Email: {company.email}</p>
+      <p>Phone: {company.phone_number}</p>
+      <p>Address: {company.street_address}</p>
+    </div>
+  );
+};
+
 const CarsForSale = () => {
   const [carsForSale, setCarsForSale] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -71,6 +84,7 @@ const CarsForSale = () => {
   ]);
 
   const carMakes = Array.from(new Set(carsForSale.map((car) => car.car_make)));
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
   return (
     <div>
@@ -236,10 +250,34 @@ const CarsForSale = () => {
                 <p>Mileage: {car.mileage.toLocaleString()}</p>
                 <p>Color: {car.color}</p>
                 <p>Price: ${car.price.toLocaleString()}</p>
+                <button
+                  onClick={() => {
+                    setSelectedCompany({
+                      company_name: car.company_name,
+                      location: car.company_location,
+                      email: car.company_email,
+                      phone_number: car.company_phone,
+                      street_address: car.company_address,
+                    });
+                  }}
+                >
+                  Contact
+                </button>
               </div>
             </li>
           ))}
         </ul>
+        {selectedCompany && (
+          <div className="popup-background">
+            <ContactPopup company={selectedCompany} />
+            <button
+              className="close-button"
+              onClick={() => setSelectedCompany(null)}
+            >
+              Close
+            </button>
+          </div>
+        )}
       </div>
       <Footer />
     </div>
