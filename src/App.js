@@ -1,5 +1,3 @@
-// //app.js
-
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -26,30 +24,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-// import React from "react";
-// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Home from "./pages/Home";
-// import AboutUs from "./components/AboutUs";
-// import CarsForSale from './pages/CarsForSale';
-// import SellYourCar from './pages/SellYourCar';
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/about" element={<AboutUs />} />
-//         <Route path="/cars" element={<CarsForSale />} />
-//         <Route path="/sell" element={<SellYourCar />} />
-//         <Route path="/login" component={Login} />
-//         <Route path="/register" component={Register} />
-//       </Routes>
-//     </Router>
-//   );
-// };
-
-// export default App;

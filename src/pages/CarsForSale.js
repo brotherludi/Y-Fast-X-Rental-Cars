@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { getCarsForSale } from "../api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../CarsForSale.css";
+
+const ContactPopup = ({ company }) => {
+  return (
+    <div className="contact-popup">
+      <h3>Contact Information</h3>
+      <p>Company Name: {company.company_name}</p>
+      <p>Location: {company.location}</p>
+      <p>Email: {company.email}</p>
+      <p>Phone: {company.phone_number}</p>
+      <p>Address: {company.street_address}</p>
+    </div>
+  );
+};
 
 const CarsForSale = () => {
   const [carsForSale, setCarsForSale] = useState([]);
@@ -15,17 +31,37 @@ const CarsForSale = () => {
   const [selectedYearRange, setSelectedYearRange] = useState([2015, 2025]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [favoriteCars, setFavoriteCars] = useState([]);
+  const [carsWithCompanyInfo, setCarsWithCompanyInfo] = useState([]);
+
+  const toggleFavorite = (carId) => {
+    const updatedFavorites = favoriteCars.includes(carId)
+      ? favoriteCars.filter((id) => id !== carId)
+      : [...favoriteCars, carId];
+
+    setFavoriteCars(updatedFavorites);
+    localStorage.setItem("favoriteCars", JSON.stringify(updatedFavorites));
+  };
 
   useEffect(() => {
     // Fetch the list of cars from the server using the getCarsForSale function
-    getCarsForSale()
+    const includeCompanyInfo = true; // Set this to true if want company information
+    getCarsForSale(includeCompanyInfo)
       .then((cars) => {
-        setCarsForSale(cars);
-        setFilteredCars(cars); // Initialize filteredCars with all cars
+        setCarsWithCompanyInfo(cars);
+        setCarsForSale(cars); // Initialize filteredCars with all cars
       })
       .catch((error) => {
         console.error("Error fetching cars for sale:", error);
       });
+  }, []);
+
+  useEffect(() => {
+    // Fetch favorite status from local storage
+    const favoritesFromStorage = localStorage.getItem("favoriteCars");
+    if (favoritesFromStorage) {
+      setFavoriteCars(JSON.parse(favoritesFromStorage));
+    }
   }, []);
 
   useEffect(() => {
@@ -71,9 +107,10 @@ const CarsForSale = () => {
   ]);
 
   const carMakes = Array.from(new Set(carsForSale.map((car) => car.car_make)));
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
   return (
-    <div>
+    <div className="background-pic">
       <Header />
       <div className="cars-for-sale-content">
         <h2>Cars for Sale</h2>
@@ -220,6 +257,17 @@ const CarsForSale = () => {
         <ul className="cars-list">
           {filteredCars.map((car) => (
             <li key={car.id} className="car-item">
+              <div className="favorite-icon">
+                <FontAwesomeIcon
+                  icon={
+                    favoriteCars.includes(car.id)
+                      ? faHeartSolid
+                      : faHeartRegular
+                  }
+                  className="heart-icon"
+                  onClick={() => toggleFavorite(car.id)}
+                />
+              </div>
               {car.images && (
                 <img
                   src={`${car.images[0]}`}
@@ -232,14 +280,44 @@ const CarsForSale = () => {
                 <h3>
                   {car.car_make} {car.car_model}
                 </h3>
+                {/* {car.company_name ? (
+                  <p>Company: {car.company_name}</p>
+                ) : (
+                  <p>No Company Information</p>
+                )} */}
                 <p>Year: {car.year}</p>
                 <p>Mileage: {car.mileage.toLocaleString()}</p>
                 <p>Color: {car.color}</p>
                 <p>Price: ${car.price.toLocaleString()}</p>
+                <button
+                  className="contact-button"
+                  onClick={() => {
+                    setSelectedCompany({
+                      company_name: car.company_name,
+                      location: car.company_location,
+                      email: car.company_email,
+                      phone_number: car.company_phone,
+                      street_address: car.company_address,
+                    });
+                  }}
+                >
+                  Contact
+                </button>
               </div>
             </li>
           ))}
         </ul>
+        {selectedCompany && (
+          <div className="popup-background">
+            <ContactPopup company={selectedCompany} />
+            <button
+              className="close-button"
+              onClick={() => setSelectedCompany(null)}
+            >
+              Close
+            </button>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

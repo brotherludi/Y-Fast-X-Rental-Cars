@@ -2,7 +2,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  /* background-image: url('/public/backgrounds/background1.jpeg'); */
 }
 
 .container {
@@ -93,6 +94,7 @@ header a {
 /* Introduction styles */
 .introduction {
   padding: 20px;
+  margin-left: 67px;
 }
 
 .introduction h2 {
@@ -156,4 +158,78 @@ footer {
   margin: 0 auto;
   max-width: 600px;
   padding: 0 20px;
+}
+
+/* Background picture */
+.about-us {
+  position: relative;
+}
+
+.about-us::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/public/backgrounds/background5.jpeg');
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}
+
+.home {
+  position: relative;
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/public/backgrounds/cartec.jpeg');
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Change to align items at the top */
+  margin-bottom: 180px;
+}
+
+.left-section {
+  margin-top: 100px;
+  flex: 1; /* Allow the Introduction to take up remaining space */
+  padding-right: 20px; /* Add some space between the sections */
+}
+
+.right-section {
+  margin-top: 80px;
+  flex: 1; /* Allow the CarImage to take up remaining space */
+  padding-left: 20px; /* Add some space between the sections */
+}
+
+.background-picture {
+  position: relative;
+}
+
+.background-picture::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/public/backgrounds/login.630');
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
 }

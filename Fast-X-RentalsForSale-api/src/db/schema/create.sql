@@ -26,10 +26,14 @@ CREATE TABLE companies (
   company_name VARCHAR(100) NOT NULL,
   rating DECIMAL(3, 2),
   location VARCHAR(100),
+  email VARCHAR(100) NOT NULL,
+  phone_number VARCHAR(20) NOT NULL,
+  street_address VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users (id)
 );
+
 
 -- Create the car_listings table
 CREATE TABLE car_listings (

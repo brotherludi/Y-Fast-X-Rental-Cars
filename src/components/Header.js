@@ -13,7 +13,7 @@ const Header = () => {
     <header className="header">
       <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/" className="navbar-logo">
+          <Link to="/" className="navbar-logo italic bigger">
             Fast-X-RentalsForSale
           </Link>
 
@@ -73,11 +73,6 @@ const Header = () => {
                 <li className="nav-item">
                   <Link to="/about" className="nav-links">
                     About Us
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/contact" className="nav-links">
-                    Contact
                   </Link>
                 </li>
               </ul>

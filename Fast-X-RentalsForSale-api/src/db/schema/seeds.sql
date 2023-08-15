@@ -1,18 +1,18 @@
 -- Seed data for users
 INSERT INTO users (first_name, last_name, email, username, password, user_type, location)
 VALUES
-  ('SEAF', 'Lastname', 'seaf@example.com', 'seafuser', 'hashed_password', 'user', 'New York'),
-  ('DI', 'Lastname', 'di@example.com', 'diuser', 'hashed_password', 'user', 'Los Angeles'),
-  ('BRUCE', 'Lastname', 'bruce@example.com', 'bruceuser', 'hashed_password', 'user', 'Chicago'),
-  ('ABDUL', 'Lastname', 'abdul@example.com', 'abduluser', 'hashed_password', 'user', 'Houston');
+  ('SEAF', 'Lastname', 'seaf@RentalsForSale.ca', 'seafuser', 'hashed_password', 'user', 'New York'),
+  ('DI', 'Lastname', 'di@RentalsForSale.ca', 'diuser', 'hashed_password', 'user', 'Los Angeles'),
+  ('BRUCE', 'Lastname', 'bruce@RentalsForSale.ca', 'bruceuser', 'hashed_password', 'user', 'Chicago'),
+  ('ABDUL', 'Lastname', 'abdul@RentalsForSale.ca', 'abduluser', 'hashed_password', 'user', 'Houston');
 
 -- Seed data for companies
-INSERT INTO companies (user_id, company_name, rating, location)
+INSERT INTO companies (user_id, company_name, rating, location, email, phone_number, street_address)
 VALUES
-  (1, 'SEAF Car Rentals', 4.5, 'New York'),
-  (2, 'DI Car Rentals', 4.2, 'Los Angeles'),
-  (3, 'BRUCE Car Rentals', 4.7, 'Chicago'),
-  (4, 'ABDUL Car Rentals', 4.1, 'Houston');
+  (1, 'SEAF-RentalsForSale', 4.7, 'Ottawa', 'seaf@RentalsForSale.ca', '965-456-7890', '123 Main St'),
+  (2, 'DI-RentalsForSale', 4.7, 'Calgary', 'di@RentalsForSale.ca', '987-654-3210', '456 Elm St'),
+  (3, 'BRUCE-RentalsForSale', 4.7, 'Victoria', 'bruce@RentalsForSale.ca', '965-524-2547', '789 Oak Ave'),
+  (4, 'ABDUL-RentalsForSale', 4.7, 'Toronto', 'abdul@RentalsForSale.ca', '906-859-3333', '567 Maple St');
 
 -- Seed data for car_listings
 INSERT INTO car_listings (company_id, car_make, car_model, mileage, price, year, color, images, visibility, car_luxury)
