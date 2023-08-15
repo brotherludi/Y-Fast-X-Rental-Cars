@@ -22,13 +22,15 @@
 }
 
 .car-image {
+  /* width: 330px; */
   margin-right: 10px;
 }
 
 .car-details {
   font-size: 16px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
   align-items: flex-start;
   gap: 3px;
 }
@@ -39,7 +41,6 @@
 
 .car-details p {
   margin: 5px 0;
-  flex: 1;
 }
 
 /* Filters container */
