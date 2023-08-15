@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getCarsForSale } from "../api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../CarsForSale.css";
@@ -28,18 +31,37 @@ const CarsForSale = () => {
   const [selectedYearRange, setSelectedYearRange] = useState([2015, 2025]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [favoriteCars, setFavoriteCars] = useState([]);
+  const [carsWithCompanyInfo, setCarsWithCompanyInfo] = useState([]);
+
+  const toggleFavorite = (carId) => {
+    const updatedFavorites = favoriteCars.includes(carId)
+      ? favoriteCars.filter((id) => id !== carId)
+      : [...favoriteCars, carId];
+
+    setFavoriteCars(updatedFavorites);
+    localStorage.setItem("favoriteCars", JSON.stringify(updatedFavorites));
+  };
 
   useEffect(() => {
     // Fetch the list of cars from the server using the getCarsForSale function
-    const includeCompanyInfo = true; // Set this to true if you want company information
+    const includeCompanyInfo = true; // Set this to true if want company information
     getCarsForSale(includeCompanyInfo)
       .then((cars) => {
-        setCarsForSale(cars);
-        setFilteredCars(cars); // Initialize filteredCars with all cars
+        setCarsWithCompanyInfo(cars);
+        setCarsForSale(cars); // Initialize filteredCars with all cars
       })
       .catch((error) => {
         console.error("Error fetching cars for sale:", error);
       });
+  }, []);
+
+  useEffect(() => {
+    // Fetch favorite status from local storage
+    const favoritesFromStorage = localStorage.getItem("favoriteCars");
+    if (favoritesFromStorage) {
+      setFavoriteCars(JSON.parse(favoritesFromStorage));
+    }
   }, []);
 
   useEffect(() => {
@@ -235,6 +257,17 @@ const CarsForSale = () => {
         <ul className="cars-list">
           {filteredCars.map((car) => (
             <li key={car.id} className="car-item">
+              <div className="favorite-icon">
+                <FontAwesomeIcon
+                  icon={
+                    favoriteCars.includes(car.id)
+                      ? faHeartSolid
+                      : faHeartRegular
+                  }
+                  className="heart-icon"
+                  onClick={() => toggleFavorite(car.id)}
+                />
+              </div>
               {car.images && (
                 <img
                   src={`${car.images[0]}`}

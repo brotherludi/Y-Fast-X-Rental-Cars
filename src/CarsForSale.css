@@ -9,10 +9,11 @@
   /* Two columns */
   gap: 10px;
   /* Spacing between cars */
-  margin-left: -300px;
+  margin-left: -380px;
 }
 
 .car-item {
+  position: relative;
   display: flex;
   align-items: center;
   border: 3px solid #ddd;
@@ -21,7 +22,6 @@
 }
 
 .car-image {
-
   margin-right: 10px;
 }
 
@@ -225,4 +225,17 @@ body {
 
 .contact-button:hover {
   background-color: #494747;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  z-index: 1;
+}
+
+.heart-icon {
+  font-size: 24px;
+  cursor: pointer;
 }
