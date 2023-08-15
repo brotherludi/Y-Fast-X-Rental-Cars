@@ -28,7 +28,7 @@
 }
 
 .sell-car-form button[type='submit'] {
-  width: 100%;
+  width: 30%;
   padding: 10px;
   background-color: #007bff;
   color: #fff;
@@ -90,4 +90,22 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.sell-car-page {
+  position: relative;
+}
+
+.sell-car-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/public/backgrounds/background2.jpeg');
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
 }

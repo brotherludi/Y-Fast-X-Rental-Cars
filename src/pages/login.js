@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../LoginRegister.css";
 import { useNavigate } from "react-router-dom";
+import "../styles.css";
 
 // Function to register a new user
 export function registerUser(userData) {
@@ -90,7 +91,7 @@ const LoginRegister = () => {
   }, [showRegisterSuccessModal, userLoggedIn, registrationSuccess, navigate]);
 
   return (
-    <div>
+    <div className="background-picture">
       <Header />
       <div className="login-register-container">
         <h2>Login</h2>

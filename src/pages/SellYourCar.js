@@ -55,7 +55,7 @@ const SellYourCar = () => {
   };
 
   return (
-    <div>
+    <div className="sell-car-page">
       <Header />
       <div className="sell-car-content">
         <h2>Sell Your Car</h2>

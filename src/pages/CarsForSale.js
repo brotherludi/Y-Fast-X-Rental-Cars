@@ -87,7 +87,7 @@ const CarsForSale = () => {
   const [selectedCompany, setSelectedCompany] = useState(null);
 
   return (
-    <div>
+    <div className="background-pic">
       <Header />
       <div className="cars-for-sale-content">
         <h2>Cars for Sale</h2>
@@ -251,6 +251,7 @@ const CarsForSale = () => {
                 <p>Color: {car.color}</p>
                 <p>Price: ${car.price.toLocaleString()}</p>
                 <button
+                  className="contact-button"
                   onClick={() => {
                     setSelectedCompany({
                       company_name: car.company_name,
