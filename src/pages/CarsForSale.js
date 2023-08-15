@@ -33,6 +33,7 @@ const CarsForSale = () => {
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [favoriteCars, setFavoriteCars] = useState([]);
   const [carsWithCompanyInfo, setCarsWithCompanyInfo] = useState([]);
+  const [clickedHearts, setClickedHearts] = useState({});
 
   const toggleFavorite = (carId) => {
     const updatedFavorites = favoriteCars.includes(carId)
@@ -41,6 +42,11 @@ const CarsForSale = () => {
 
     setFavoriteCars(updatedFavorites);
     localStorage.setItem("favoriteCars", JSON.stringify(updatedFavorites));
+
+    setClickedHearts((prevClickedHearts) => ({
+      ...prevClickedHearts,
+      [carId]: !prevClickedHearts[carId],
+    }));
   };
 
   useEffect(() => {
@@ -266,6 +272,9 @@ const CarsForSale = () => {
                   }
                   className="heart-icon"
                   onClick={() => toggleFavorite(car.id)}
+                  style={{
+                    color: clickedHearts[car.id] ? "#ff6347" : "#ffffff",
+                  }}
                 />
               </div>
               {car.images && (

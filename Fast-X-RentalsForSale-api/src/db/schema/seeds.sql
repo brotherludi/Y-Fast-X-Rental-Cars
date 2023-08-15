@@ -21,7 +21,10 @@ VALUES
   (2, 'Honda', 'Civic', 36541, 18000.00, 2019, 'Black', ARRAY['https://uploads.builtforbackroads.com/uploads/2022/02/2022.02.07-HONDA-CIVIC-2019_1.jpg'], true, false),
   (3, 'Mercedes-Benz', 'S580e', 12377, 129999.00, 2023, 'Black', ARRAY['https://media.zenfs.com/en/autoblog_50/20f94babdf223fe560dfabf96c044ec0'], true, true),
   (4, 'Chevrolet', 'Camaro', 18657, 49999.00, 2022, 'Yellow', ARRAY['https://www.motortrend.com/uploads/2021/09/001-chevy-camaro-driver-front-three-quarter.jpg'], true, false),
-  (2, 'Toyota', 'Camry', 15324, 16000.00, 2021, 'Red', ARRAY['https://www.autotrader.com/wp-content/uploads/2022/02/2021-toyota-camry-trd.jpg?w=1024'], true, false);
+  (1, 'Hyundai', 'Elantra N', 59843, 35799.00, 2022, 'White', ARRAY['https://www.cnet.com/a/img/resize/b5ba2f9b2b1bb272f3703daef961af71ea3d89af/hub/2021/11/21/5f32fce7-1d54-446d-abd5-614f34cafb04/ogi1-2022-hyundai-elantra-n002.jpg?auto=webp&fit=crop&height=675&width=1200'], true, false),
+  (2, 'Toyota', 'Camry', 15324, 16000.00, 2021, 'Red', ARRAY['https://www.autotrader.com/wp-content/uploads/2022/02/2021-toyota-camry-trd.jpg?w=1024'], true, false),
+  (3, 'Toyota', 'Highlander', 49856, 43650.00, 2022, 'White', ARRAY['https://img.sm360.ca/ir/w640h480/images/article/tusket-toyota/108502//2023_highlander_turbo_xse_windchillpearl_0011671691775515.jpg'], true, false),
+  (4, 'Volkswagen', 'Golf GTI', 42692, 34989.00, 2021, 'Grey', ARRAY['https://assets.volkswagen.com/is/image/volkswagenag/GolfGTI_FullScreenStage?Zml0PWNyb3AsMSZmbXQ9cG5nLWFscGhhJndpZD0xNjAwJmhlaT05MDAmYmZjPW9mZiY5YWYy'], true, false);
 
 -- Seed data for favorites
 INSERT INTO favorites (user_id, car_id, created_at, updated_at)
