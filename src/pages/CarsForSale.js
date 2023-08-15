@@ -280,11 +280,11 @@ const CarsForSale = () => {
                 <h3>
                   {car.car_make} {car.car_model}
                 </h3>
-                {car.company_name ? (
+                {/* {car.company_name ? (
                   <p>Company: {car.company_name}</p>
                 ) : (
                   <p>No Company Information</p>
-                )}
+                )} */}
                 <p>Year: {car.year}</p>
                 <p>Mileage: {car.mileage.toLocaleString()}</p>
                 <p>Color: {car.color}</p>
