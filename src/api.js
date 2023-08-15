@@ -6,8 +6,10 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
-export const getCarsForSale = () => {
-  return api.get("/cars").then((response) => response.data);
+export const getCarsForSale = (includeCompanyInfo = false) => {
+  return api
+    .get("/cars", { params: { includeCompanyInfo } })
+    .then((response) => response.data);
 };
 
 export const postSellCar = async (carData) => {

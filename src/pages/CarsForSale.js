@@ -31,7 +31,8 @@ const CarsForSale = () => {
 
   useEffect(() => {
     // Fetch the list of cars from the server using the getCarsForSale function
-    getCarsForSale()
+    const includeCompanyInfo = true; // Set this to true if you want company information
+    getCarsForSale(includeCompanyInfo)
       .then((cars) => {
         setCarsForSale(cars);
         setFilteredCars(cars); // Initialize filteredCars with all cars
@@ -246,6 +247,11 @@ const CarsForSale = () => {
                 <h3>
                   {car.car_make} {car.car_model}
                 </h3>
+                {car.company_name ? (
+                  <p>Company: {car.company_name}</p>
+                ) : (
+                  <p>No Company Information</p>
+                )}
                 <p>Year: {car.year}</p>
                 <p>Mileage: {car.mileage.toLocaleString()}</p>
                 <p>Color: {car.color}</p>
