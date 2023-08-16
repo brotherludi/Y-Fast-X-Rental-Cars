@@ -1,22 +1,21 @@
 .cars-for-sale-content {
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 0 auto;
+  padding: 0 30px;
 }
 
 .cars-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* Two columns */
   gap: 10px;
-  /* Spacing between cars */
-  margin-left: -380px;
+  padding-inline-start: 0;
 }
 
 .car-item {
   position: relative;
   display: flex;
   align-items: center;
-  border: 3px solid #ddd;
+  border: 3px solid #333;
   padding: 10px;
   border-radius: 5px;
 }
@@ -92,7 +91,7 @@
 }
 
 .search-container input[type="text"] {
-  width: 74%;
+  width: 35.5%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -221,7 +220,7 @@ body {
 }
 
 /* .cars-for-sale-content h2 {
-  margin-left: 39px; 
+  margin-left: 0; 
 } */
 
 .contact-button {

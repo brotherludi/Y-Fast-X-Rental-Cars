@@ -35,18 +35,15 @@ header a {
   padding: 10px 0;
   position: relative;
   width: 100%;
-
 }
 
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin: 0 auto;
-  padding: 0 20px;
-  width: 90%;
-
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .navbar-logo {
@@ -158,6 +155,8 @@ footer {
   margin: 0 auto;
   max-width: 600px;
   padding: 0 20px;
+  margin-top: 80px;
+  margin-bottom: 175px;
 }
 
 /* Background picture */
@@ -200,36 +199,23 @@ footer {
 .main-content {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Change to align items at the top */
+  align-items: flex-start;
+  /* Change to align items at the top */
   margin-bottom: 180px;
 }
 
 .left-section {
   margin-top: 100px;
-  flex: 1; /* Allow the Introduction to take up remaining space */
-  padding-right: 20px; /* Add some space between the sections */
+  flex: 1;
+  /* Allow the Introduction to take up remaining space */
+  padding-right: 20px;
+  /* Add some space between the sections */
 }
 
 .right-section {
   margin-top: 80px;
-  flex: 1; /* Allow the CarImage to take up remaining space */
-  padding-left: 20px; /* Add some space between the sections */
-}
-
-.background-picture {
-  position: relative;
-}
-
-.background-picture::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/public/backgrounds/login.630');
-  z-index: -1;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.5;
+  flex: 1;
+  /* Allow the CarImage to take up remaining space */
+  padding-left: 20px;
+  /* Add some space between the sections */
 }

@@ -273,7 +273,7 @@ const CarsForSale = () => {
                   className="heart-icon"
                   onClick={() => toggleFavorite(car.id)}
                   style={{
-                    color: clickedHearts[car.id] ? "#ff6347" : "#ffffff",
+                    color: clickedHearts[car.id] ? "#ff6347" : "#747272",
                   }}
                 />
               </div>
