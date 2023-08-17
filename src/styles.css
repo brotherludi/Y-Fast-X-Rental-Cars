@@ -108,10 +108,12 @@ header a {
 }
 
 .main-content {
+  margin-bottom: 290px;
+  margin-top: 70px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 20px;
+  /* margin: 20px; */
 }
 
 .left-section {
@@ -145,6 +147,7 @@ header a {
 
 /* Footer styles */
 footer {
+  margin-top: 50.5px;
   text-align: center;
   padding: 10px;
   background-color: #333;
@@ -153,10 +156,11 @@ footer {
 
 .about-us-paragraph {
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 690px;
   padding: 0 20px;
-  margin-top: 80px;
-  margin-bottom: 175px;
+  margin-top: 65px;
+  margin-bottom: 110px;
+  font-size: 18px;
 }
 
 /* Background picture */
@@ -219,3 +223,11 @@ footer {
   padding-left: 20px;
   /* Add some space between the sections */
 }
+
+.intro-text {
+  font-size: 22px;
+}
+
+/* .about-text {
+  font-size: 22px;
+} */
