@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Fast-X-RentalsForSale
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Lighthouse Labs - Web Development Program - Final Project
 
-In the project directory, you can run:
+Low Mileage, Nearly New Models, and Unbeatable Prices! Find your dream car at a fraction of the cost of buying brand new. Welcome to Fast-X-RentalsForSale, where incredible deals await 🤩
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img width="1728" alt="About" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/e8bbaa12-cced-4e0e-958c-7bb47f9eda83">
+<img width="1728" alt="1" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/89ade81b-0204-4c19-bb77-0edb91ce4b69">
+<img width="1728" alt="2" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/b5007c58-3509-4ff6-a256-0083011f6c5b">
+<img width="1728" alt="3" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/55764e56-c204-4467-b3e9-ac32c45f5047">
+<img width="1728" alt="4" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/013d964f-603b-4d9a-ab5a-2aaa7909e52d">
+<img width="1728" alt="5" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/f333f5c4-8042-42d1-83a2-d151000f696f">
+<img width="1728" alt="6" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/456f8fff-8ac2-4847-a8e2-167daf888bda">
+<img width="1728" alt="7" src="https://github.com/brotherludi/Fast-X-RentalsForSale/assets/110562017/11c60abc-c0e2-4c41-bac6-23d306c878ef">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Install dependencies with npm install.
+2. Create the .env by using .env.example as a reference.
+3. Update the .env file with your local information: <br>
+    PGHOST=localhost <br>
+    PGUSER=labber <br>
+    PGDATABASE=car_used_rental <br>
+    PGPASSWORD=labber <br>
+    PGPORT=5432 <br>
+4. Inside /Fast-X-RentalsForSale-api run: <br>
+    psql (Enter psql) <br>
+    psql -U labber car_used_rental (Create car_used_rental database with user labber) <br>
+    \i src/db/schema/create.sql <br>
+    \i src/db/schema/seeds.sql <br>
+5. Start the Webpack Development Server(/Fast-X-RentalsForSale-api) using the npm start command.
+6. Start the React app using the npm start command at root folder. 
+   The app will be served at http://localhost:3001/.
